@@ -34,6 +34,15 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() => _profile = result);
   }
 
+  void _logout() {
+    // Pindah ke Splash DAN hapus semua halaman di bawahnya
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      AppRoutes.splash,
+      (route) => false, // false = hapus semua route lama
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +53,11 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: const Icon(Icons.edit),
             tooltip: 'Edit profil',
             onPressed: _openEditProfile,
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Keluar',
+            onPressed: _logout,
           ),
         ],
       ),
